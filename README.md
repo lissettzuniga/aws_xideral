@@ -1,76 +1,50 @@
 # aws_xideral
-Tarea 1: Preparación del entorno de desarrollo
 
-Alumna: Lissett Zúñiga Reyes
-Entorno: Windows, WSL2, Ubuntu, Bash, Docker, Python y Jupyter Notebook
+## 1. Instalar WSL2 y Ubuntu
 
-Objetivo
-
-Preparar un entorno local de desarrollo en Windows utilizando Ubuntu sobre WSL2. El entorno incluye Bash, Docker, Python 3.14.7 administrado con pyenv, un ambiente virtual de Python y Jupyter Notebook.
-
-1. Instalación de WSL2 y Ubuntu
-
-Abrí PowerShell como administrador y ejecuté:
+Abrir PowerShell como administrador y ejecutar:
 
 wsl --install
 
-Después reinicié Windows y comprobé que Ubuntu estuviera utilizando WSL2:
+Reiniciar Windows cuando sea solicitado. Después, verificar que Ubuntu utilice WSL2:
 
 wsl --list --verbose
 
-El valor de la columna VERSION debe ser 2.
-
-Para iniciar Ubuntu desde PowerShell utilicé:
+Iniciar Ubuntu:
 
 wsl -d Ubuntu
 
-Ya dentro de Ubuntu, verifiqué el sistema, usuario, directorio y shell:
+Desde este punto, los comandos se ejecutan en Bash dentro de Ubuntu.
 
-uname -a
-whoami
 cd ~
-pwd
 echo $SHELL
 
-El comando echo $SHELL debe mostrar /bin/bash.
+El shell debe ser /bin/bash.
 
-
-
-2. Actualización de Ubuntu
-
-Actualicé la información de los paquetes y las aplicaciones instaladas:
+## 2. Actualizar Ubuntu
 
 sudo apt update
 sudo apt upgrade -y
 
-3. Instalación y configuración de Docker
+## 3. Configurar Docker
 
-Instalé Docker Desktop para Windows y habilité su integración con WSL2 desde:
-
-Docker Desktop → Settings → General → Use the WSL 2 based engine
-Docker Desktop → Settings → Resources → WSL Integration → Ubuntu
-
-Después comprobé la instalación desde Bash:
+Después de instalar Docker Desktop y habilitar la integración con Ubuntu en WSL2, validar desde Bash:
 
 docker --version
 
-Agregué mi usuario al grupo docker para ejecutar Docker sin sudo:
+Crear el grupo docker y agregar el usuario actual:
 
 sudo groupadd -f docker
 sudo usermod -aG docker $USER
 
-Cerré la sesión de Ubuntu y volví a abrirla para aplicar el cambio. Luego validé el grupo y ejecuté el contenedor de prueba:
+Cerrar y volver a abrir Ubuntu para aplicar el cambio. Después, ejecutar:
 
 groups
 docker run hello-world
 
-La instalación es correcta cuando aparece el mensaje Hello from Docker!.
+La instalación es correcta cuando aparece Hello from Docker!.
 
-
-
-4. Instalación de dependencias para Python
-
-Instalé las herramientas y bibliotecas necesarias para compilar Python:
+## 4. Instalar las dependencias de Python
 
 sudo apt install -y \
   make \
@@ -91,129 +65,49 @@ sudo apt install -y \
   libffi-dev \
   liblzma-dev
 
-5. Instalación y configuración de pyenv
+## 5. Instalar pyenv
 
-Cloné el repositorio de pyenv dentro de mi carpeta personal:
+Clonar el proyecto:
 
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 
-Comprobé su contenido:
+Comprobar la descarga:
 
 ls ~/.pyenv
 
-Como el shell utilizado es Bash, agregué la configuración a ~/.bashrc:
+Configurar pyenv para Bash:
 
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
-echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(pyenv init - bash)"' >> ~/.bashrc
 source ~/.bashrc
 
-Verifiqué la instalación:
+Verificar:
 
 pyenv --version
 
-6. Instalación de Python 3.14.7
-
-Consulté las versiones disponibles de Python 3.14:
+## 6. Instalar Python 3.14.7
 
 pyenv install --list | grep " 3.14"
-
-Instalé y seleccioné Python 3.14.7:
-
 pyenv install 3.14.7
 pyenv versions
 pyenv global 3.14.7
 pyenv rehash
-
-Validé la versión y el ejecutable:
-
 python --version
-which python
 
-El resultado esperado de la versión es:
+El resultado esperado es:
 
 Python 3.14.7
 
-
-
-7. Creación del workspace y entorno virtual
-
-Creé el directorio de trabajo para Jupyter:
+## 7. Crear el workspace y el entorno virtual
 
 mkdir -p ~/jupyter
 cd ~/jupyter
-
-Creé y activé un entorno virtual:
-
+python --version
 python -m venv .venv
 source .venv/bin/activate
 
-Cuando el entorno está activo, el prompt comienza con (.venv).
+El prefijo (.venv) confirma que el entorno virtual está activo.
 
-Actualicé pip e instalé Jupyter Notebook y el kernel de Python:
-
-python -m pip install --upgrade pip
-pip install notebook
-pip install ipykernel
-
-8. Ejecución de Jupyter Notebook
-
-Con el entorno virtual activo, inicié Jupyter:
-
-jupyter notebook
-
-En un notebook ejecuté el siguiente código para comprobar la versión de Python y la ruta del entorno virtual:
-
-import sys
-
-print("Python version:")
-print(sys.version)
-
-print("\nPython executable:")
-print(sys.executable)
-
-El ejecutable utilizado debe encontrarse dentro de:
-
-/home/lissett/jupyter/.venv/bin/python
-
-
-
-9. Apertura automática de Jupyter en Windows
-
-Para que WSL abra el navegador predeterminado de Windows, creé el archivo ~/bin/wsl-browser:
-
-#!/bin/bash
-/mnt/c/Windows/System32/cmd.exe /c start "" "$1"
-
-Le asigné permiso de ejecución y lo configuré como navegador de Bash:
-
-chmod +x ~/bin/wsl-browser
-echo 'export BROWSER="$HOME/bin/wsl-browser"' >> ~/.bashrc
-source ~/.bashrc
-
-También deshabilité el archivo de redirección de Jupyter, ya que Windows no puede abrir directamente una ruta file:/home/... de Linux:
-
-mkdir -p ~/.jupyter
-echo 'c.ServerApp.use_redirect_file = False' >> ~/.jupyter/jupyter_server_config.py
-
-Finalmente, para iniciar una nueva sesión:
-
-cd ~/jupyter
-source .venv/bin/activate
-jupyter notebook
-
-Resultado
-
-El entorno local quedó configurado correctamente con:
-
-Ubuntu ejecutándose sobre WSL2.
-
-Bash como shell.
-
-Docker funcionando sin sudo.
-
-Python 3.14.7 administrado con pyenv.
-
-Entorno virtual aislado en .venv.
-
-Jupyter Notebook ejecutándose en el navegador de Windows.
+## 8. Instalar y ejecutar Jupyter Notebook.
+<img width="1198" height="642" alt="image" src="https://github.com/user-attachments/assets/cd14cc9f-7bfe-46c5-979e-822e557374ee" />
