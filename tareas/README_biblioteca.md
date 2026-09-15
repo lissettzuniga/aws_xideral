@@ -9,7 +9,7 @@ La tabla contiene el título, autor, género, año de publicación, número de p
 ## Tecnologías utilizadas
 
 - DBeaver
-- MySQL/MariaDB
+- MySQL
 - SQL
 
 ## Estructura de la tabla
@@ -77,7 +77,8 @@ SELECT *
 FROM libros_lissett;
 ```
 
-<!-- Agrega aquí tu captura: ![Resultado de la consulta 1](capturas/consulta-01.png) -->
+<img width="623" height="205" alt="image" src="https://github.com/user-attachments/assets/d60f9e03-0f2e-4efc-ae08-a1c494d867ac" />
+
 
 ### 2. Mostrar solamente el título, autor y género
 
@@ -86,7 +87,8 @@ SELECT titulo, autor, genero
 FROM libros_lissett;
 ```
 
-<!-- Agrega aquí tu captura: ![Resultado de la consulta 2](capturas/consulta-02.png) -->
+<img width="372" height="191" alt="image" src="https://github.com/user-attachments/assets/6d34f1bc-c819-4d62-89da-041f262db6f4" />
+
 
 ### 3. Mostrar los libros disponibles
 
@@ -96,7 +98,10 @@ FROM libros_lissett
 WHERE disponible = TRUE;
 ```
 
-<!-- Agrega aquí tu captura: ![Resultado de la consulta 3](capturas/consulta-03.png) -->
+<img width="620" height="202" alt="image" src="https://github.com/user-attachments/assets/102221a8-0b23-4fab-86a2-0ac21f19dc84" />
+<img width="427" height="138" alt="image" src="https://github.com/user-attachments/assets/d144ddae-7d72-486d-a26c-f798c3a261c1" />
+
+
 
 ### 4. Buscar libros de un género específico
 
@@ -107,8 +112,9 @@ SELECT *
 FROM libros_lissett
 WHERE genero = 'Fantasía';
 ```
+<img width="629" height="98" alt="image" src="https://github.com/user-attachments/assets/87a3e3a4-8b09-4aa8-8469-97f0797f744f" />
 
-<!-- Agrega aquí tu captura: ![Resultado de la consulta 4](capturas/consulta-04.png) -->
+
 
 ### 5. Mostrar los libros publicados después del año 2000
 
@@ -118,7 +124,8 @@ FROM libros_lissett
 WHERE anio_publicacion > 2000;
 ```
 
-<!-- Agrega aquí tu captura: ![Resultado de la consulta 5](capturas/consulta-05.png) -->
+<img width="626" height="158" alt="image" src="https://github.com/user-attachments/assets/fb6f3614-ac5d-4d5f-870f-5afae03da3af" />
+
 
 ### 6. Mostrar los libros con calificación mayor a 8
 
@@ -128,7 +135,8 @@ FROM libros_lissett
 WHERE calificacion > 8;
 ```
 
-<!-- Agrega aquí tu captura: ![Resultado de la consulta 6](capturas/consulta-06.png) -->
+<img width="634" height="239" alt="image" src="https://github.com/user-attachments/assets/b4952fdc-7c1f-406a-8d05-693d081522c6" />
+
 
 ### 7. Ordenar los libros del más reciente al más antiguo
 
@@ -138,7 +146,8 @@ FROM libros_lissett
 ORDER BY anio_publicacion DESC;
 ```
 
-<!-- Agrega aquí tu captura: ![Resultado de la consulta 7](capturas/consulta-07.png) -->
+<img width="634" height="236" alt="image" src="https://github.com/user-attachments/assets/ffd377da-edc3-4645-9a1f-f318e58934c9" />
+
 
 ### 8. Mostrar el libro con mayor calificación
 
@@ -149,7 +158,8 @@ ORDER BY calificacion DESC
 LIMIT 1;
 ```
 
-<!-- Agrega aquí tu captura: ![Resultado de la consulta 8](capturas/consulta-08.png) -->
+<img width="612" height="67" alt="image" src="https://github.com/user-attachments/assets/0ffb0ae3-a66b-4d28-9edf-ff0c5c3d0d80" />
+
 
 ### 9. Calcular el promedio de páginas de los libros
 
@@ -158,7 +168,8 @@ SELECT ROUND(AVG(numero_paginas), 2) AS promedio_paginas
 FROM libros_lissett;
 ```
 
-<!-- Agrega aquí tu captura: ![Resultado de la consulta 9](capturas/consulta-09.png) -->
+<img width="491" height="77" alt="image" src="https://github.com/user-attachments/assets/870d0009-9df8-4f86-b84f-a247ae35934e" />
+
 
 ### 10. Contar cuántos libros existen por género
 
@@ -169,7 +180,8 @@ GROUP BY genero
 ORDER BY cantidad_libros DESC;
 ```
 
-<!-- Agrega aquí tu captura: ![Resultado de la consulta 10](capturas/consulta-10.png) -->
+<img width="248" height="219" alt="image" src="https://github.com/user-attachments/assets/ec9d218c-833f-4b39-8896-e6c1999ea881" />
+
 
 ### 11. Buscar títulos que contengan una palabra utilizando `LIKE`
 
@@ -181,7 +193,8 @@ FROM libros_lissett
 WHERE titulo LIKE '%libros%';
 ```
 
-<!-- Agrega aquí tu captura: ![Resultado de la consulta 11](capturas/consulta-11.png) -->
+<img width="632" height="95" alt="image" src="https://github.com/user-attachments/assets/7551e396-3f8c-4bb6-b3fd-99d518916080" />
+
 
 ### 12. Cambiar un libro de disponible a no disponible
 
@@ -201,7 +214,8 @@ FROM libros_lissett
 WHERE libro_id = 1;
 ```
 
-<!-- Agrega aquí tu captura: ![Resultado de la consulta 12](capturas/consulta-12.png) -->
+<img width="467" height="163" alt="image" src="https://github.com/user-attachments/assets/910a2428-8925-4727-81f8-575c7a094a83" />
+
 
 ## Conclusión
 
