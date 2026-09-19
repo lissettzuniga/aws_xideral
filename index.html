@@ -4,122 +4,451 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Curso AWS Data</title>
+    <title>Academia Fullstack Xideral</title>
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f4f4f4;
+        :root {
+            --azul-oscuro: #18263a;
+            --azul: #2474b5;
+            --naranja: #ff9900;
+            --fondo: #f3f6f9;
+            --blanco: #ffffff;
+            --texto: #263648;
+            --texto-suave: #657487;
+            --borde: #e1e8ef;
+            --sombra: 0 8px 24px rgba(24, 38, 58, 0.09);
         }
 
-        h1 {
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--fondo);
+            color: var(--texto);
+            line-height: 1.6;
+        }
+
+        header {
+            padding: 65px 20px;
             text-align: center;
-            color: #232f3e;
+            color: var(--blanco);
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(24, 38, 58, 0.97),
+                    rgba(36, 116, 181, 0.92)
+                );
+        }
+
+        header h1 {
+            max-width: 900px;
+            margin: 0 auto 12px;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+        }
+
+        header p {
+            max-width: 720px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: #e9f3fb;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 14px 20px;
+            background-color: var(--blanco);
+            box-shadow: 0 3px 12px rgba(24, 38, 58, 0.1);
+        }
+
+        nav a {
+            padding: 8px 15px;
+            color: var(--azul-oscuro);
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--blanco);
+            background-color: var(--azul);
+        }
+
+        main {
+            width: min(1100px, 92%);
+            margin: 35px auto;
         }
 
         section {
-            background-color: white;
-            margin: 20px 0;
-            padding: 20px;
-            border-radius: 10px;
+            margin-bottom: 30px;
+            padding: 30px;
+            background-color: var(--blanco);
+            border: 1px solid var(--borde);
+            border-radius: 16px;
+            box-shadow: var(--sombra);
         }
 
-        h2 {
-            color: #ff9900;
+        section h2 {
+            margin: 0 0 5px;
+            color: var(--azul-oscuro);
+            font-size: 1.7rem;
+        }
+
+        section > p {
+            margin-top: 5px;
+            color: var(--texto-suave);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            min-height: 145px;
+            padding: 20px;
+            color: inherit;
+            text-decoration: none;
+            background-color: #f9fbfd;
+            border: 1px solid var(--borde);
+            border-left: 5px solid var(--azul);
+            border-radius: 12px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(24, 38, 58, 0.12);
+        }
+
+        .card.certificacion {
+            border-left-color: var(--naranja);
+        }
+
+        .numero {
+            margin-bottom: 8px;
+            color: var(--azul);
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 0.08rem;
+            text-transform: uppercase;
+        }
+
+        .certificacion .numero {
+            color: #c87500;
+        }
+
+        .card h3 {
+            margin: 0 0 8px;
+            color: var(--azul-oscuro);
+            font-size: 1.05rem;
+        }
+
+        .card p {
+            margin: auto 0 0;
+            color: var(--texto-suave);
+            font-size: 0.9rem;
+        }
+
+        .proyecto {
+            text-align: center;
+        }
+
+        .boton {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 11px 22px;
+            color: var(--blanco);
+            font-weight: bold;
+            text-decoration: none;
+            background-color: var(--naranja);
+            border-radius: 25px;
+            transition: 0.2s ease;
+        }
+
+        .boton:hover {
+            background-color: #db8300;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            padding: 28px 20px;
+            text-align: center;
+            color: #dce6ef;
+            background-color: var(--azul-oscuro);
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 45px 18px;
+            }
+
+            main {
+                width: 94%;
+                margin-top: 22px;
+            }
+
+            section {
+                padding: 22px 17px;
+            }
+
+            nav {
+                position: static;
+            }
         }
     </style>
 </head>
 
 <body>
-    <h1>Curso AWS Data</h1>
+    <header>
+        <h1>Academia Fullstack Xideral</h1>
+        <p>
+            Portafolio de actividades, ejercicios, certificaciones y proyectos
+            desarrollados durante el curso de AWS y Data.
+        </p>
+    </header>
 
-    <section id="tareas">
-        <h2>Tareas</h2>
-        <p>Actividades realizadas durante el curso.</p>
-    
-        <ul>
-            <li>
-                <a href="tareas/tarea-2.html" target="_blank">
-                    Tarea 2
-                </a>
-            </li>
-    
-            <li>
-                <a href="tareas/tarea-3.html" target="_blank">
-                    Tarea 3
-                </a>
-            </li>
-    
-            <li>
-                <a href="tareas/tarea-conceptos.html" target="_blank">
-                    Conceptos estadísticos con Pandas
-                </a>
-            </li>
-    
-            <li>
-                <a href="tareas/tarea-titanic.html" target="_blank">
-                    Análisis del dataset Titanic
-                </a>
-            </li>
-    
-            <li>
-                <a href="tareas/tarea-chipotle.html" target="_blank">
-                    Análisis del dataset Chipotle
-                </a>
-            </li>
-    
-            <li>
-                <a href="tareas/tarea_Boto3.html" target="_blank">
-                    Análisis del dataset Spotify con Boto3
-                </a>
-            </li>
-    
-            <li>
-                <a href="tareas/Tarea_Clean_Data.html" target="_blank">
-                    Limpieza y análisis del dataset Olist
-                </a>
-            </li>
-        </ul>
-    </section>
-    <section id="ejercicios">
-        <h2>Ejercicios en clase</h2>
-        <p>Ejercicios desarrollados durante las clases.</p>
+    <nav aria-label="Navegación principal">
+        <a href="#tareas">Tareas</a>
+        <a href="#ejercicios">Ejercicios</a>
+        <a href="#certificaciones">Certificaciones</a>
+        <a href="#proyecto-integrador">Proyecto integrador</a>
+    </nav>
 
-        <ul>
-            <li>
-                <a href="ejercicios/ejercicio-1-clase.html" target="_blank">
-                    Ejercicio 1 de clase
-                </a>
-            </li>
-        </ul>
-    </section>
+    <main>
+        <section id="tareas">
+            <h2>📚 Tareas</h2>
+            <p>Doce actividades realizadas durante la Academia Fullstack Xideral.</p>
 
-    <section id="certificaciones">
-        <h2>Certificaciones</h2>
-        <p>Certificaciones obtenidas durante el curso.</p>
-    
-        <ul>
-            <li>
-                <a href="certificaciones/Data%20Engineering%20on%20AWS%20-%20Foundations.pdf"
-                   target="_blank">
-                    Data Engineering on AWS - Foundations
+            <div class="grid">
+                <a class="card"
+                   href="README.md"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="numero">Tarea 1</span>
+                    <h3>Configuración del entorno de trabajo</h3>
+                    <p>Preparación inicial y documentación del entorno.</p>
                 </a>
-            </li>
-    
-            <li>
-                <a href="certificaciones/Getting%20into%20the%20Serverless%20Mindset.pdf"
-                   target="_blank">
-                    Getting into the Serverless Mindset
-                </a>
-            </li>
-        </ul>
-    </section>
 
-    <section id="proyecto-integrador">
-        <h2>Proyecto integrador</h2>
-        <p>Proyecto final desarrollado durante la academia.</p>
-        <p>Próximamente se agregará el proyecto integrador.</p>
-    </section>
+                <a class="card"
+                   href="tareas/tarea-2.html"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="numero">Tarea 2</span>
+                    <h3>Fundamentos de Python</h3>
+                    <p>Actividad práctica desarrollada durante el curso.</p>
+                </a>
+
+                <a class="card"
+                   href="tareas/tarea-conceptos.html"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="numero">Tarea 3</span>
+                    <h3>Conceptos estadísticos con Pandas</h3>
+                    <p>Análisis y aplicación de conceptos estadísticos.</p>
+                </a>
+
+                <a class="card"
+                   href="tareas/tarea-titanic.html"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="numero">Tarea 4</span>
+                    <h3>Análisis del dataset Titanic</h3>
+                    <p>Exploración y análisis de información con Pandas.</p>
+                </a>
+
+                <a class="card"
+                   href="tareas/tarea-chipotle.html"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="numero">Tarea 5</span>
+                    <h3>Análisis del dataset Chipotle</h3>
+                    <p>Consultas, limpieza y análisis de datos.</p>
+                </a>
+
+                <a class="card"
+                   href="tareas/tarea_Boto3.html"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="numero">Tarea 6</span>
+                    <h3>Spotify con Boto3</h3>
+                    <p>Análisis de datos almacenados en Amazon S3.</p>
+                </a>
+
+                <a class="card"
+                   href="http://54.241.63.158:8501/"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="numero">Tarea 7</span>
+                    <h3>Aplicación en Streamlit</h3>
+                    <p>Dashboard desplegado en una instancia de AWS.</p>
+                </a>
+
+                <a class="card"
+                   href="https://github.com/lissettzuniga/streamlit-curso"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="numero">Tarea 8</span>
+                    <h3>Proyecto Streamlit</h3>
+                    <p>Repositorio de la aplicación desarrollada durante el curso.</p>
+                </a>
+
+                <a class="card"
+                   href="Proyecto/Parte1_Proyecto.html"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="numero">Tarea 9</span>
+                    <h3>Parte 1 del proyecto</h3>
+                    <p>Primera etapa del proyecto integrador.</p>
+                </a>
+
+                <a class="card"
+                   href="tareas/Tarea_Clean_Data.html"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="numero">Tarea 10</span>
+                    <h3>Limpieza del dataset Olist</h3>
+                    <p>Procesamiento, limpieza y análisis de datos.</p>
+                </a>
+
+                <a class="card"
+                   href="tareas/Spark.html"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="numero">Tarea 11</span>
+                    <h3>Procesamiento de datos con Spark</h3>
+                    <p>Uso de Apache Spark para análisis distribuido.</p>
+                </a>
+
+                <a class="card"
+                   href="tareas/README_biblioteca.md"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="numero">Tarea 12</span>
+                    <h3>Base de datos Biblioteca</h3>
+                    <p>Creación de tablas y consultas mediante SQL.</p>
+                </a>
+            </div>
+        </section>
+
+        <section id="ejercicios">
+            <h2>💻 Ejercicios en clase</h2>
+            <p>Ejercicios prácticos desarrollados durante las sesiones.</p>
+
+            <div class="grid">
+                <a class="card"
+                   href="ejercicios/ejercicio-1-clase.html"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="numero">Ejercicio 1</span>
+                    <h3>Ejercicio 1 de clase</h3>
+                    <p>Primera práctica desarrollada durante el curso.</p>
+                </a>
+
+                <a class="card"
+                   href="ejercicios/ejercicio-2.html"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="numero">Ejercicio 2</span>
+                    <h3>Ejercicio 2 de clase</h3>
+                    <p>Segunda práctica desarrollada durante el curso.</p>
+                </a>
+
+                <a class="card"
+                   href="ejercicios/ejercicio%203%20-%20Hoja%201.pdf"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="numero">Ejercicio 3</span>
+                    <h3>Ejercicio 3 – Hoja 1</h3>
+                    <p>Ejercicio práctico desarrollado durante el curso.</p>
+                </a>
+                
+            </div>
+        </section>
+
+        <section id="certificaciones">
+            <h2>🏅 Certificaciones</h2>
+            <p>Certificaciones obtenidas durante la formación en AWS.</p>
+
+            <div class="grid">
+                <a class="card certificacion"
+                   href="certificaciones/Data%20Engineering%20on%20AWS%20-%20Foundations.pdf"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="numero">Certificación</span>
+                    <h3>Data Engineering on AWS – Foundations</h3>
+                    <p>Fundamentos de ingeniería de datos en AWS.</p>
+                </a>
+
+                <a class="card certificacion"
+                   href="certificaciones/Getting%20into%20the%20Serverless%20Mindset.pdf"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="numero">Certificación</span>
+                    <h3>Getting into the Serverless Mindset</h3>
+                    <p>Principios y prácticas de arquitecturas serverless.</p>
+                </a>
+
+                <a class="card certificacion"
+                   href="certificaciones/AWS%20Well-Architected.pdf"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="numero">Certificación</span>
+                    <h3>AWS Well-Architected</h3>
+                    <p>Principios para diseñar cargas de trabajo en AWS.</p>
+                </a>
+
+                <a class="card certificacion"
+                   href="certificaciones/AWS%20Cloud%20Practitioner%20Essentials.pdf"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="numero">Certificación</span>
+                    <h3>AWS Cloud Practitioner Essentials</h3>
+                    <p>Conceptos esenciales sobre servicios y arquitectura de AWS.</p>
+                </a>
+            </div>
+        </section>
+
+        <section id="proyecto-integrador" class="proyecto">
+            <h2>🚕 Proyecto integrador</h2>
+            <p>
+                Pipeline de datos de NYC Taxi desarrollado con AWS, Python,
+                PySpark, Amazon S3, Amazon RDS y Streamlit.
+            </p>
+
+            <a class="boton"
+               href="https://github.com/lissettzuniga/nyc-taxi-aws-pipeline"
+               target="_blank"
+               rel="noopener noreferrer">
+                Ver proyecto
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        <p><strong>Lissett Zuñiga Reyes</strong></p>
+        <p>Academia Fullstack Xideral · 2026</p>
+    </footer>
 </body>
 </html>
